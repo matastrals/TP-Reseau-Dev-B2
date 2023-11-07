@@ -1,4 +1,5 @@
 import socket
+import sys
 
 host="10.33.76.234"
 port=13_337
@@ -22,7 +23,9 @@ while True:
 
     except socket.error:
         print("Error Occured.")
+        sys.exit(1)
         break
 
 
 conn.close()
+sys.exit(0)
