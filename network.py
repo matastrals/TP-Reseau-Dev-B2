@@ -22,14 +22,17 @@ def Get_Ip():
     return None
 
 response = ""
-match (argv[1]):
-    case "lookup":
+if len(argv) >= 3:
+    command = argv[1]
+    if command == "lookup":
         response = Lookup(argv[2])
-    case "ping":
+    elif command == "ping":
         response = Is_Up(argv[2])
-    case "ip":
+    elif command == "ip":
         response = Get_Ip()
-    case _:
-        response = "is not an available command. Be better."
-print(f"{argv[1]} {response}")
+    else:
+        response = f"{command} is not an available command. Be better."
+else:
+    response = "Usage: python script.py <command> <argument>"
+print(f"{response}")
 
