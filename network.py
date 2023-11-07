@@ -8,7 +8,7 @@ def Lookup(arg):
     return response
 
 def Is_Up(arg):
-    if os.system(f"ping {arg} > ./null ") == 0:
+    if os.system(f"ping -c 2 {arg} > ./null ") == 0:
         return "UP !"
     else:
        return "DOWN !"

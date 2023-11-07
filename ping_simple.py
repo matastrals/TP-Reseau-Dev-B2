@@ -1,5 +1,5 @@
 import os
 
-command = "ping 8.8.8.8"
+command = "ping -c 2 8.8.8.8"
 
 os.system(command)
