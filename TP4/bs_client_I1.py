@@ -18,11 +18,9 @@ message = input("Que veux-tu envoyer au serveur : ")
 try:
     s.sendall(f"{message}")
     data = s.recv(1024)
-
 except Exception as e:
     sys.exit(1)
-
-finally:
+else:
     print(repr(data))
     s.close()
     sys.exit(0)
