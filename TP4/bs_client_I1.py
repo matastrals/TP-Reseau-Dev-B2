@@ -1,7 +1,7 @@
 import socket
 import sys
 
-host = "10.33.76.234" 
+host = "10.33.79.254" 
 port = 13337              
 
 
