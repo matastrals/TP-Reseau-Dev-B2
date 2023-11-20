@@ -26,8 +26,8 @@ while True:
     except socket.error:
         print("Error Occured.")
         sys.exit(1)
-    else:
-        print(data)
+    finally:
+        print(f"Voila le message : {data}")
 
 conn.close()
 sys.exit(0)
