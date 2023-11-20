@@ -18,14 +18,16 @@ else:
 
 while True:
     try:
-        conn.sendall(b"Hi mate !")
+        data = conn.recv(1024)
+        print(f"Voila le message : {repr(data)}")
+        if not data: print("Error no data"); break
+        
     except socket.error:
         print("Error Occured.")
         sys.exit(1)
     finally:
-        data = conn.recv(1024)
-        if not data: print("Error no data"); break
         print(f"Voila le message : {repr(data)}")
+        conn.sendall(b"Hi mate !")
 
 conn.close()
 sys.exit(0)
