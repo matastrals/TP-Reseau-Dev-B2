@@ -16,12 +16,13 @@ else:
 
 message = input("Que veux-tu envoyer au serveur : ")
 try:
-    s.sendall(f"{message}")
+    s.sendall(message.encode())
     data = s.recv(1024)
 except Exception as e:
     print(e)
+    s.close()
     sys.exit(1)
-    
+
 print(repr(data))
 s.close()
 sys.exit(0)
