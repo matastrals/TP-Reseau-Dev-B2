@@ -15,10 +15,9 @@ except:
     sys.exit(1)
 else:
     print(addr)
-    print(f"Un client vient de se co et son IP c'est {addr}")
+    print(f"Un client vient de se co et son IP c'est {addr[0]}")
 
 while True:
-
     try:
         data = conn.recv(1024)
         if not data: break
