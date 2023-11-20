@@ -27,7 +27,7 @@ while True:
         print("Error Occured.")
         sys.exit(1)
     finally:
-        print(f"Voila le message : {data}")
+        print(f"Voila le message : {repr(data)}")
 
 conn.close()
 sys.exit(0)
