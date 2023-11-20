@@ -23,10 +23,10 @@ while True:
         
     except socket.error:
         print("Error Occured.")
+        conn.close()
         sys.exit(1)
-    finally:
-        print(f"Voila le message : {repr(data)}")
-        conn.sendall(b"Hi mate !")
-
+        
+print(f"Voila le message : {repr(data)}")
+conn.sendall(b"Hi mate !")
 conn.close()
 sys.exit(0)
