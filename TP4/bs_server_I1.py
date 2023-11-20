@@ -14,7 +14,6 @@ except:
     print("Error")
     sys.exit(1)
 else:
-    print(addr)
     print(f"Un client vient de se co et son IP c'est {addr[0]}")
 
 while True:
@@ -22,13 +21,13 @@ while True:
         data = conn.recv(1024)
         if not data: break
 
-        print(data)
-
         conn.sendall(b"Hi mate !")
 
     except socket.error:
         print("Error Occured.")
         sys.exit(1)
+    else:
+        print(data)
 
 conn.close()
 sys.exit(0)
