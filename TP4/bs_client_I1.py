@@ -19,8 +19,9 @@ try:
     s.sendall(f"{message}")
     data = s.recv(1024)
 except Exception as e:
+    print(e)
     sys.exit(1)
-else:
-    print(repr(data))
-    s.close()
-    sys.exit(0)
+    
+print(repr(data))
+s.close()
+sys.exit(0)

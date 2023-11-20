@@ -19,7 +19,6 @@ else:
 while True:
     try:
         data = conn.recv(1024)
-        print(f"Voila le message : {repr(data)}")
         if not data: print("Error no data"); break
         
     except socket.error:
