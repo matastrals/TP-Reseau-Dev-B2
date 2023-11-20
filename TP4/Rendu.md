@@ -9,4 +9,8 @@ b'Meooooo !'
 b'Hi mate !'
 ```
 
+```
+[matastral@server ~]$ ss -alp | grep python
+tcp   LISTEN 0      1                                    10.33.76.234:13337                   0.0.0.0:*    users:(("python",pid=1434,fd=3))
+```
 
