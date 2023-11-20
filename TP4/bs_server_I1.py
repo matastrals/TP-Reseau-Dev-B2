@@ -19,7 +19,7 @@ else:
 while True:
     try:
         data = conn.recv(1024)
-        if not data: break
+        if not data: print("Error no data"); break
 
         conn.sendall(b"Hi mate !")
 
