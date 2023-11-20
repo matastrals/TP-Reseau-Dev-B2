@@ -15,6 +15,7 @@ else:
     print(f"Connecté avec succès au serveur {host} sur le port {port}" )
 
 message = input("Que veux-tu envoyer au serveur : ")
+data = ""
 try:
     s.sendall(f"{message}")
     data = s.recv(1024)

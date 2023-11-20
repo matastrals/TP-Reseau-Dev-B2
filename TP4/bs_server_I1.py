@@ -12,7 +12,9 @@ try:
     conn, addr = s.accept()
 except:
     print("Error")
+    sys.exit(1)
 else:
+    print(addr)
     print(f"Un client vient de se co et son IP c'est {addr}")
 
 while True:
