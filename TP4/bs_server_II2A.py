@@ -4,7 +4,7 @@ import argparse
 import logging
 import datetime
 import os
-import time
+import select
 
 os.makedirs("/var/log/bs_server", exist_ok=True)
 
@@ -32,25 +32,27 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((host, port))  
 s.listen(1)
 logging.info(f'Le serveur tourne sur {host}:{port}')
+
+# Configuration du timeout
+s.settimeout(10)  # Timeout de 10 secondes
+
+# Initialisation de lastTime
 lastTime = datetime.datetime.now()
 
 while True:
     try:
-        # Mettre un timeout sur accept pour ne pas bloquer indéfiniment
-        conn, addr = s.accept()
+        # Utiliser select pour attendre la connexion avec un timeout
+        readable, _, _ = select.select([s], [], [], 10)
+        if s in readable:
+            conn, addr = s.accept()
+            print(f"Connexion établie avec {addr}")
+            # Faire quelque chose avec la connexion, si nécessaire
+            break
     except socket.timeout:
-        print("Aucune connexion pendant le timeout")
         period = datetime.datetime.now()
         if (period - lastTime).total_seconds() >= 10:
             logging.warning('Aucun client depuis plus de 10 secondes.')
             lastTime = period
-    else:
-        # Une connexion a été acceptée, réinitialiser lastTime
-        lastTime = datetime.datetime.now()
-        print(f"Connexion établie avec {addr[0]}")
-        # Faire quelque chose avec la connexion, si nécessaire
-        break
-
 
 logging.info(f'Un client {addr[0]} s\'est connecté.')
 
