@@ -21,12 +21,15 @@ while True:
     if data.decode().__contains__("meo"):
         message = "Meo a toi confrere."
         conn.sendall(message.encode())
+        conn.close()
+        sys.exit(0)
     elif data.decode().__contains__("waf"):
         message = "ptdr t ki"
         conn.sendall(message.encode())
+        conn.close()
+        sys.exit(0)
     else:
         message = "Mes respects humble humain."
         conn.sendall(message.encode())
-        
-conn.close()
-sys.exit(0)
+        conn.close()
+        sys.exit(0)
