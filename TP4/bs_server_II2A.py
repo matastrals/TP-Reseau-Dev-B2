@@ -7,17 +7,17 @@ import os
 import select
 
 os.makedirs("/var/log/bs_server", exist_ok=True)
-warning_formatter = logging.Formatter('%(asctime)s - \033[93m%(levelname)s\033[0m - %(message)s')
-warning_handler = logging.StreamHandler()
-warning_handler.setLevel(logging.WARNING)
-warning_handler.setFormatter(warning_formatter)
-logging.getLogger().addHandler(warning_handler)
 
-# info_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-# info_handler = logging.StreamHandler()
-# info_handler.setLevel(logging.INFO)
-# info_handler.setFormatter(info_formatter)
-# logging.getLogger().addHandler(info_handler)
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S', handlers=[logging.FileHandler("/var/log/bs_server/bs_server.log"), logging.StreamHandler(sys.stdout)],)
+
+logger_warning = logging.getLogger()
+logger_warning.setLevel(logging.WARNING)
+warning_formatter = logging.Formatter('%(asctime)s - \033[93m%(levelname)s\033[0m - %(message)s')
+logger_warning = logging.StreamHandler()
+logger_warning.setLevel(logging.WARNING)
+logger_warning.setFormatter(warning_formatter)
+logging.getLogger().addHandler(logger_warning)
+
 
 
 host="10.33.76.234"
@@ -61,7 +61,7 @@ while True:
         break
     period = datetime.datetime.now()
     if (period - lastTime).total_seconds() >= 10:
-        logging.warning('Aucun client depuis plus de 10 secondes.')
+        logger_warning('Aucun client depuis plus de 10 secondes.')
         lastTime = period
 
 logging.info(f'Un client {addr[0]} s\'est connecté.')
