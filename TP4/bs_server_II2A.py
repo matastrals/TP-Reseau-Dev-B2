@@ -43,6 +43,7 @@ lastTime = datetime.datetime.now()
 
 while True:
     try:
+        print("salut")
         # Utiliser select pour attendre la connexion avec un timeout
         readable, _, _ = select.select([s], [], [], 10)
         if s in readable:
@@ -51,6 +52,7 @@ while True:
             # Faire quelque chose avec la connexion, si nécessaire
             break
     except socket.timeout:
+        print("oui")
         period = datetime.datetime.now()
         if (period - lastTime).total_seconds() >= 10:
             logging.warning('Aucun client depuis plus de 10 secondes.')
