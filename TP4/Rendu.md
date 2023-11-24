@@ -14,3 +14,10 @@ b'Hi mate !'
 tcp   LISTEN 0      1                                    10.33.76.234:13337                   0.0.0.0:*    users:(("python",pid=1434,fd=3))
 ```
 
+A la création du fichier server.log, il est nécessaire de faire des commandes sinon le programme plantera
+
+```
+sudo chown {utilisateur}:{utilisateur} /var/log/bs_server -R
+sudo chmod 700 /var/log/bs_server/
+sudo chmod 600 /var/log/bs_server/bs_server.log
+```
