@@ -54,7 +54,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 s.bind((host, port))  
 s.listen(1)
-logger_info.info(f'Le serveur tourne sur {host}:{port}')
+logger_info(f'Le serveur tourne sur {host}:{port}')
 
 # Configuration du timeout
 s.settimeout(10)  # Timeout de 10 secondes
