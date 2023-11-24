@@ -13,11 +13,11 @@ warning_handler.setLevel(logging.WARNING)
 warning_handler.setFormatter(warning_formatter)
 logging.getLogger().addHandler(warning_handler)
 
-info_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-info_handler = logging.StreamHandler()
-info_handler.setLevel(logging.INFO)
-info_handler.setFormatter(info_formatter)
-logging.getLogger().addHandler(info_handler)
+# info_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+# info_handler = logging.StreamHandler()
+# info_handler.setLevel(logging.INFO)
+# info_handler.setFormatter(info_formatter)
+# logging.getLogger().addHandler(info_handler)
 
 
 host="10.33.76.234"
