@@ -23,6 +23,6 @@ except Exception as e:
     s.close()
     sys.exit(1)
 
-print(repr(data))
+print(data.decode())
 s.close()
 sys.exit(0)
