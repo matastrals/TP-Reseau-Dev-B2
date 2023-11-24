@@ -17,15 +17,16 @@ else:
     print(f"Un client vient de se co et son IP c'est {addr[0]}")
 
 while True:
-    try:
-        data = conn.recv(1024)
-        print(f"Voila le message : {repr(data)}")
-        conn.sendall(b"Hi mate !")
-    except socket.error:
-        print("Error Occured.")
-        conn.close()
-        sys.exit(1)
+    data = conn.recv(1024)
+    if data.decode().__contains__("meo"):
+        message = "Meo à toi confrère."
+        conn.sendall(message.encode())
+    elif data.decode().__contains__("waf"):
+        message = "ptdr t ki"
+        conn.sendall(message.encode())
+    else:
+        message = "Mes respects humble humain."
+        conn.sendall(message.encode())
         
-
 conn.close()
 sys.exit(0)
