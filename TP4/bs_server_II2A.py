@@ -61,7 +61,7 @@ while True:
         break
     period = datetime.datetime.now()
     if (period - lastTime).total_seconds() >= 10:
-        logger.warning('Aucun client depuis plus de 10 secondes.')
+        logger.warn('Aucun client depuis plus de 10 secondes.')
         lastTime = period
 
 logging.info(f'Un client {addr[0]} s\'est connecté.')
