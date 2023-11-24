@@ -43,7 +43,7 @@ else:
 while True:
     # Reçoit les données du client
     data = conn.recv(1024)
-
+    lastTime = datetime.datetime.now()
     if not data:
             period = datetime.datetime.now()
             if (lastTime - period).total_seconds() == 30:
