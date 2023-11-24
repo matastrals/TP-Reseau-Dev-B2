@@ -8,6 +8,7 @@ import select
 
 os.makedirs("/var/log/bs_server", exist_ok=True)
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S', handlers=[logging.FileHandler("/var/log/bs_server/bs_server.log"), logging.StreamHandler(sys.stdout)],)
 logging.basicConfig(level=logging.WARNING, format='\033[0m%(asctime)s - \033[93m%(levelname)s\033[0m - %(message)s', datefmt='%Y-%m-%d %H:%M:%S', handlers=[logging.FileHandler("/var/log/bs_server/bs_server.log"), logging.StreamHandler(sys.stdout)],)
 
 host="10.33.76.234"
@@ -59,7 +60,7 @@ logging.info(f'Un client {addr[0]} s\'est connecté.')
 while True:
     # Reçoit les données du client
     data = conn.recv(1024)
-    
+    logging.info(f'Le client {addr[0]} a envoyé {data.decode()}')
     if data.decode().__contains__("meo"):
         message = "Meo a toi confrere."
         conn.sendall(message.encode())
