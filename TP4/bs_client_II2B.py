@@ -15,6 +15,7 @@ info_handler = logging.StreamHandler()
 info_handler.setLevel(logging.ERROR)
 info_handler.setFormatter(info_formatter)
 logging.getLogger().addHandler(info_handler)
+
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 try:
     s.connect((host, port))
