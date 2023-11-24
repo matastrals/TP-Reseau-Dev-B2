@@ -35,16 +35,13 @@ logging.info(f'Le serveur tourne sur {host}:{port}')
 lastTime = datetime.datetime.now()
 
 while True:
-    print("salut")
     if s.accept():
-        print("ouai")
         break
-    else:
-        print("non")
-        period = datetime.datetime.now()
-        if abs(lastTime - period).total_seconds() >= 10:
-            logging.warning('Aucun client depuis plus d\'une minute.')
-            lastTime = period
+    print("non")
+    period = datetime.datetime.now()
+    if abs(lastTime - period).total_seconds() >= 10:
+        logging.warning('Aucun client depuis plus d\'une minute.')
+        lastTime = period
 
 conn, addr = s.accept()
 # try:
