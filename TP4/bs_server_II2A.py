@@ -33,6 +33,7 @@ s.listen(1)
 logging.info(f'Le serveur tourne sur {host}:{port}')
 lastTime = datetime.datetime.now()
 
+conn = None
 while conn == None:
     period = datetime.datetime.now()
     if (lastTime - period).total_seconds() == 30:
