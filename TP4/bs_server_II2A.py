@@ -36,6 +36,8 @@ logging.info(f'Le serveur tourne sur {host}:{port}')
 # Configuration du timeout
 s.settimeout(10)  # Timeout de 10 secondes
 
+s.setblocking(False)
+
 # Initialisation de lastTime
 lastTime = datetime.datetime.now()
 
