@@ -8,7 +8,7 @@ import select
 
 os.makedirs("/var/log/bs_server", exist_ok=True)
 
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S', handlers=[logging.FileHandler("/var/log/bs_server/bs_server.log"), logging.StreamHandler(sys.stdout)],)
+# logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S', handlers=[logging.FileHandler("/var/log/bs_server/bs_server.log"), logging.StreamHandler(sys.stdout)],)
 
 logger = logging.getLogger()
 logger.setLevel(logging.WARNING)
@@ -61,7 +61,7 @@ while True:
         break
     period = datetime.datetime.now()
     if (period - lastTime).total_seconds() >= 10:
-        logging.warning('Aucun client depuis plus de 10 secondes.')
+        logger.warning('Aucun client depuis plus de 10 secondes.')
         lastTime = period
 
 logging.info(f'Un client {addr[0]} s\'est connecté.')
