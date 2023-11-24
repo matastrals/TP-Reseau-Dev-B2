@@ -19,7 +19,7 @@ else:
 
 while True:
     data = conn.recv(1024)
-    if type(data.decode) == str and bool(re.search(r'meo|waf', data.decode())):
+    if type(data.decode) == str and bool(re.search(r'meo|waf', data.decode())) == True:
         if data.decode().__contains__("meo"):
             message = "Meo a toi confrere."
             conn.sendall(message.encode())
