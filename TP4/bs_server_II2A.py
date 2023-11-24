@@ -38,7 +38,7 @@ conn = None
 
 while conn is None:
     period = datetime.datetime.now()
-
+    print("coucou")
     if abs(lastTime - period).total_seconds() >= 10:
         logging.warning('Aucun client depuis plus d\'une minute.')
         lastTime = period
