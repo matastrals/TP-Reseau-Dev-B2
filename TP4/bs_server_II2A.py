@@ -33,6 +33,11 @@ s.listen(1)
 logging.info(f'Le serveur tourne sur {host}:{port}')
 
 try:
+    lastTime = datetime.datetime.now()
+    period = datetime.datetime.now()
+    if (lastTime - period).total_seconds() == 30:
+        logging.warn(f'Aucun client depuis plus de une minute.')
+        lastTime = period
     conn, addr = s.accept()
 except:
     print("Error")
@@ -43,12 +48,6 @@ else:
 while True:
     # Reçoit les données du client
     data = conn.recv(1024)
-    lastTime = datetime.datetime.now()
-    if not data:
-            period = datetime.datetime.now()
-            if (lastTime - period).total_seconds() == 30:
-                logging.warn(f'Aucun client depuis plus de une minute.')
-                lastTime = period
     
     if data.decode().__contains__("meo"):
         message = "Meo a toi confrere."
