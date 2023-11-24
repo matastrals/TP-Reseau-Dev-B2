@@ -8,21 +8,29 @@ import select
 
 os.makedirs("/var/log/bs_server", exist_ok=True)
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S', handlers=[logging.FileHandler("/var/log/bs_server/bs_server.log"), logging.StreamHandler(sys.stdout)],)
-
-logger = logging.getLogger()
-logger.setLevel(logging.WARNING)
+logger_warning = logging.getLogger()
+logger_warning.setLevel(logging.WARNING)
 consoleHandler = logging.FileHandler("/var/log/bs_server/bs_server.log")
 consoleHandler.setLevel(logging.WARNING)
-
 consoleStreamHandler = logging.StreamHandler()
 consoleStreamHandler.setLevel(logging.WARNING)
-warning_formatter = logging.Formatter('%(asctime)s - \033[93m%(levelname)s\033[0m - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
-consoleHandler.setFormatter(warning_formatter)
-consoleStreamHandler.setFormatter(warning_formatter)
-logger.addHandler(consoleHandler)
-logger.addHandler(consoleStreamHandler)
+info_formatter = logging.Formatter('%(asctime)s - \033[93m%(levelname)s\033[0m - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+consoleHandler.setFormatter(info_formatter)
+consoleStreamHandler.setFormatter(info_formatter)
+logger_warning.addHandler(consoleHandler)
+logger_warning.addHandler(consoleStreamHandler)
 
+logger_info = logging.getLogger()
+logger_info.setLevel(logging.INFO)
+consoleHandler = logging.FileHandler("/var/log/bs_server/bs_server.log")
+consoleHandler.setLevel(logging.INFO)
+consoleStreamHandler = logging.StreamHandler()
+consoleStreamHandler.setLevel(logging.INFO)
+info_formatter = logging.Formatter('%(asctime)s - \033[93m%(levelname)s\033[0m - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+consoleHandler.setFormatter(info_formatter)
+consoleStreamHandler.setFormatter(info_formatter)
+logger_info.addHandler(consoleHandler)
+logger_info.addHandler(consoleStreamHandler)
 
 
 host="10.33.76.234"
@@ -46,7 +54,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 s.bind((host, port))  
 s.listen(1)
-logger.info(f'Le serveur tourne sur {host}:{port}')
+logger_info.info(f'Le serveur tourne sur {host}:{port}')
 
 # Configuration du timeout
 s.settimeout(10)  # Timeout de 10 secondes
@@ -66,7 +74,7 @@ while True:
         break
     period = datetime.datetime.now()
     if (period - lastTime).total_seconds() >= 10:
-        logger.warning('Aucun client depuis plus de 10 secondes.')
+        logger_warning.warning('Aucun client depuis plus de 10 secondes.')
         lastTime = period
 
 logging.info(f'Un client {addr[0]} s\'est connecté.')
