@@ -4,6 +4,7 @@ import argparse
 import logging
 import datetime
 import os
+import time
 
 os.makedirs("/var/log/bs_server", exist_ok=True)
 
@@ -36,6 +37,8 @@ lastTime = datetime.datetime.now()
 conn = None
 while conn == None:
     period = datetime.datetime.now()
+    time.sleep(5)
+    print(lastTime - period.total_seconds())
     if (lastTime - period).total_seconds() == 30:
         logging.warn(f'Aucun client depuis plus de une minute.')
         lastTime = period
