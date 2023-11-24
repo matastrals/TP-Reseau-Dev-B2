@@ -10,13 +10,18 @@ os.makedirs("/var/log/bs_server", exist_ok=True)
 
 # logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S', handlers=[logging.FileHandler("/var/log/bs_server/bs_server.log"), logging.StreamHandler(sys.stdout)],)
 
-logger = logging.getLogger("salut")
-logger.setLevel(logging.INFO)
+logger = logging.getLogger()
+logger.setLevel(logging.WARNING)
 consoleHandler = logging.FileHandler("/var/log/bs_server/bs_server.log")
-consoleHandler.setLevel(logging.INFO)
-warning_formatter = logging.Formatter('%(asctime)s - \033[93m%(levelname)s\033[0m - %(message)s')
+consoleHandler.setLevel(logging.WARNING)
+
+consoleStreamHandler = logging.StreamHandler()
+consoleStreamHandler.setLevel(logging.WARNING)
+warning_formatter = logging.Formatter('%(asctime)s - \033[93m%(levelname)s\033[0m - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 consoleHandler.setFormatter(warning_formatter)
+consoleStreamHandler.setFormatter(warning_formatter)
 logger.addHandler(consoleHandler)
+logger.addHandler(consoleStreamHandler)
 
 
 
@@ -61,7 +66,7 @@ while True:
         break
     period = datetime.datetime.now()
     if (period - lastTime).total_seconds() >= 10:
-        logging.warning('Aucun client depuis plus de 10 secondes.')
+        logger.warning('Aucun client depuis plus de 10 secondes.')
         lastTime = period
 
 logging.info(f'Un client {addr[0]} s\'est connecté.')
