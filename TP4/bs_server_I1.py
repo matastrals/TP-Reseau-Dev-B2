@@ -22,9 +22,11 @@ while True:
     if type(data.decode()) != str:
         conn.close()
         raise TypeError("Ici on veut que des strings !")
-    if bool(re.search(r'meo|waf', data.decode())) == False:
+    
+    if bool(re.fullmatch(r'meo|waf', data.decode())) == False:
         conn.close()
         raise TypeError("On ne veut pas d'humain !")
+    
     if data.decode().__contains__("meo"):
         message = "Meo a toi confrere."
         conn.sendall(message.encode())
@@ -34,7 +36,7 @@ while True:
         conn.sendall(message.encode())
         break
     else:
-        print(data.decode(), bool(re.search(r'meo|waf', data.decode())))
+        print(data.decode(), bool(re.fullmatch(r'meo|waf', data.decode())))
         break
     
             
