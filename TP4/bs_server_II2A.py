@@ -15,7 +15,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-p", "--port", action="store", help="open on a specific port")
 args = parser.parse_args()
 
-port = int(args.port)
+port = args.port
 
 if (port == None):
     port = 13337
