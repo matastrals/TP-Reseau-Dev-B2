@@ -38,7 +38,7 @@ while True:
         elif not re.search(r'meo|waf', data.decode()):
             raise TypeError("On ne veut pas d'humain !")
         else:
-            print(data.decode())
+            print(data.decode(), re.search(r'meo|waf', data.decode()))
             raise TypeError("Pourquoi une erreur ????")
             
 conn.close()
