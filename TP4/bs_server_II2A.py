@@ -41,7 +41,7 @@ while conn is None:
     time.sleep(5)
     print(abs(lastTime - period).total_seconds())
 
-    if abs(lastTime - period).total_seconds() >= 60:
+    if abs(lastTime - period).total_seconds() >= 10:
         logging.warning('Aucun client depuis plus d\'une minute.')
         lastTime = period
 
