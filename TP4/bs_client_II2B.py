@@ -4,11 +4,10 @@ import re
 import logging
 import os
 
-host = "192.168.1.98"
+host = "10.33.76.234"
 port = 13337
 
 os.makedirs("./logs", exist_ok=True)
-
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S', handlers=[logging.FileHandler("./logs/bs_client.log"), logging.StreamHandler(sys.stdout)],)
 logging.basicConfig(level=logging.ERROR, format='\033[0m%(asctime)s - \033[91m%(levelname)s\033[0m - %(message)s', datefmt='%Y-%m-%d %H:%M:%S', handlers=[logging.FileHandler("./logs/bs_client.log"), logging.StreamHandler(sys.stdout)],)
