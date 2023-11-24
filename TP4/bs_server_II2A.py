@@ -9,7 +9,7 @@ os.makedirs("/var/log/bs_server", exist_ok=True)
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S', handlers=[logging.FileHandler("/var/log/bs_server/bs_server.log"), logging.StreamHandler(sys.stdout)],)
 
-host=""
+host="10.33.76.234"
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-p", "--port", action="store", help="open on a specific port")
@@ -31,9 +31,9 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((host, port))  
 s.listen(1)
 logging.info(f'Le serveur tourne sur {host}:{port}')
+lastTime = datetime.datetime.now()
 
 try:
-    lastTime = datetime.datetime.now()
     period = datetime.datetime.now()
     if (lastTime - period).total_seconds() == 30:
         logging.warn(f'Aucun client depuis plus de une minute.')
