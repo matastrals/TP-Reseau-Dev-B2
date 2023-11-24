@@ -10,7 +10,7 @@ os.makedirs("/var/log/bs_server", exist_ok=True)
 
 # logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S', handlers=[logging.FileHandler("/var/log/bs_server/bs_server.log"), logging.StreamHandler(sys.stdout)],)
 
-logger = logging.getLogger()
+logger = logging.getLogger("salut")
 logger.setLevel(logging.INFO)
 consoleHandler = logging.FileHandler("/var/log/bs_server/bs_server.log")
 consoleHandler.setLevel(logging.INFO)
