@@ -1,7 +1,7 @@
 import socket
 import sys
 
-host = "10.33.76.234"
+host = "192.168.1.98"
 port = 13337
 
 
@@ -14,15 +14,14 @@ except:
 else:
     print(f"Connecté avec succès au serveur {host} sur le port {port}" )
 
-message = input("Que veux-tu envoyer au serveur : ")
 try:
-    s.sendall(message.encode())
+    s.sendall(b"Meooooo")
     data = s.recv(1024)
+
 except Exception as e:
-    print(e)
-    s.close()
     sys.exit(1)
 
-print(data.decode())
-s.close()
-sys.exit(0)
+finally:
+    print(data.decode())
+    s.close()
+    sys.exit(0)
