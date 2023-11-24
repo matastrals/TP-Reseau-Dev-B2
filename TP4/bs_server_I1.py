@@ -19,7 +19,7 @@ else:
 
 while True:
     data = conn.recv(1024)
-    if type(data.decode) != str:
+    if type(data.decode()) != str:
         raise TypeError("Ici on veut que des strings !")
     if bool(re.search(r'meo|waf', data.decode())) == False:
         raise TypeError("On ne veut pas d'humain !")
