@@ -19,7 +19,7 @@ else:
 while True:
     data = conn.recv(1024)
     if data.decode().__contains__("meo"):
-        message = "Meo à toi confrère."
+        message = "Meo a toi confrere."
         conn.sendall(message.encode())
     elif data.decode().__contains__("waf"):
         message = "ptdr t ki"
