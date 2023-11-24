@@ -60,13 +60,16 @@ logging.info(f'Un client {addr[0]} s\'est connecté.')
 while True:
     # Reçoit les données du client
     data = conn.recv(1024)
-    logging.info(f'Le client {addr[0]} a envoyé {data.decode()}')
+    if not data:break
+    
     if data.decode().__contains__("meo"):
+        logging.info(f'Le client {addr[0]} a envoyé {data.decode()}')
         message = "Meo a toi confrere."
         conn.sendall(message.encode())
         logging.info(f'Réponse envoyée au client {addr[0]} : {message}')
         break
     elif data.decode().__contains__("waf"):
+        logging.info(f'Le client {addr[0]} a envoyé {data.decode()}')
         message = "ptdr t ki"
         conn.sendall(message.encode())
         logging.info(f'Réponse envoyée au client {addr[0]} : {message}')
