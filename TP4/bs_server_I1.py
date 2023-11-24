@@ -35,7 +35,7 @@ while True:
     else:
         if type(data.decode()) != str:
             raise TypeError("Ici on veut que des strings !")
-        elif re.search(r'meo|waf', data.decode()) == False:
+        elif not re.search(r'meo|waf', data.decode()):
             raise TypeError("On ne veut pas d'humain !")
         else:
             raise TypeError("Pourquoi une erreur ????")
