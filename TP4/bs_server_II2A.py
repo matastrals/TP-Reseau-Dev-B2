@@ -8,12 +8,16 @@ import select
 
 os.makedirs("/var/log/bs_server", exist_ok=True)
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S', handlers=[logging.FileHandler("/var/log/bs_server/bs_server.log"), logging.StreamHandler(sys.stdout)],)
-info_formatter = logging.Formatter('%(asctime)s - \033[93m%(levelname)s\033[0m - %(message)s')
+info_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 info_handler = logging.StreamHandler()
-info_handler.setLevel(logging.WARNING)
+info_handler.setLevel(logging.INFO)
 info_handler.setFormatter(info_formatter)
 logging.getLogger().addHandler(info_handler)
+warning_formatter = logging.Formatter('%(asctime)s - \033[93m%(levelname)s\033[0m - %(message)s')
+warning_handler = logging.StreamHandler()
+warning_handler.setLevel(logging.WARNING)
+warning_handler.setFormatter(warning_formatter)
+logging.getLogger().addHandler(warning_handler)
 
 host="10.33.76.234"
 
