@@ -42,21 +42,19 @@ s.setblocking(False)
 lastTime = datetime.datetime.now()
 
 while True:
-    try:
-        print("salut")
-        # Utiliser select pour attendre la connexion avec un timeout
-        readable, _, _ = select.select([s], [], [], 10)
-        if s in readable:
-            conn, addr = s.accept()
-            print(f"Connexion établie avec {addr}")
-            # Faire quelque chose avec la connexion, si nécessaire
-            break
-    except socket.timeout:
-        print("oui")
-        period = datetime.datetime.now()
-        if (period - lastTime).total_seconds() >= 10:
-            logging.warning('Aucun client depuis plus de 10 secondes.')
-            lastTime = period
+    print("salut")
+    # Utiliser select pour attendre la connexion avec un timeout
+    readable, _, _ = select.select([s], [], [], 10)
+    if s in readable:
+        conn, addr = s.accept()
+        print(f"Connexion établie avec {addr}")
+        # Faire quelque chose avec la connexion, si nécessaire
+        break
+    print("oui")
+    period = datetime.datetime.now()
+    if (period - lastTime).total_seconds() >= 10:
+        logging.warning('Aucun client depuis plus de 10 secondes.')
+        lastTime = period
 
 logging.info(f'Un client {addr[0]} s\'est connecté.')
 
