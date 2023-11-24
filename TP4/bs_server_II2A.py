@@ -7,19 +7,18 @@ import os
 import select
 
 os.makedirs("/var/log/bs_server", exist_ok=True)
+warning_formatter = logging.Formatter('%(asctime)s - \033[93m%(levelname)s\033[0m - %(message)s')
+warning_handler = logging.StreamHandler()
+warning_handler.setLevel(logging.WARNING)
+warning_handler.setFormatter(warning_formatter)
+logging.getLogger().addHandler(warning_handler)
 
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
-
-# Création d'un formateur personnalisé pour les messages INFO
-info_formatter = logging.Formatter('%(asctime)s - %(levelname)s - \033[97m%(message)s\033[0m')
-
-# Création d'un gestionnaire pour les messages INFO avec le formateur personnalisé
+info_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 info_handler = logging.StreamHandler()
 info_handler.setLevel(logging.INFO)
 info_handler.setFormatter(info_formatter)
-
-# Ajout du gestionnaire à l'objet Logger
 logging.getLogger().addHandler(info_handler)
+
 
 host="10.33.76.234"
 
