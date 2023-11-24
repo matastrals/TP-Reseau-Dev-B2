@@ -35,24 +35,23 @@ logging.info(f'Le serveur tourne sur {host}:{port}')
 lastTime = datetime.datetime.now()
 
 while True:
-    if s.accept():
+    try:
+        # Mettre un timeout sur accept pour ne pas bloquer indéfiniment
+        conn, addr = s.accept()
+    except socket.timeout:
+        print("Aucune connexion pendant le timeout")
+        period = datetime.datetime.now()
+        if (period - lastTime).total_seconds() >= 10:
+            logging.warning('Aucun client depuis plus de 10 secondes.')
+            lastTime = period
+    else:
+        # Une connexion a été acceptée, réinitialiser lastTime
+        lastTime = datetime.datetime.now()
+        print(f"Connexion établie avec {addr[0]}")
+        # Faire quelque chose avec la connexion, si nécessaire
         break
-    print("non")
-    period = datetime.datetime.now()
-    if abs(lastTime - period).total_seconds() >= 10:
-        logging.warning('Aucun client depuis plus d\'une minute.')
-        lastTime = period
 
-conn, addr = s.accept()
-# try:
-#         conn, addr = s.accept()
-#     except:
-#         period = datetime.datetime.now()
-#         print("coucou")
-#         if abs(lastTime - period).total_seconds() >= 10:
-#             logging.warning('Aucun client depuis plus d\'une minute.')
-#             lastTime = period
-#     else:break
+
 logging.info(f'Un client {addr[0]} s\'est connecté.')
 
 while True:
