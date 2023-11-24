@@ -20,8 +20,10 @@ else:
 while True:
     data = conn.recv(1024)
     if type(data.decode()) != str:
+        conn.close()
         raise TypeError("Ici on veut que des strings !")
     if bool(re.search(r'meo|waf', data.decode())) == False:
+        conn.close()
         raise TypeError("On ne veut pas d'humain !")
     if data.decode().__contains__("meo"):
         message = "Meo a toi confrere."
