@@ -63,6 +63,7 @@ while True:
     if data:
         logging.info(f'Le client {addr[0]} a envoyé {data.decode()}')
         message = eval(data.decode())
+        message = str(message)
         conn.sendall(message.encode())
         logging.info(f'Réponse envoyée au client {addr[0]} : {data.decode}')
     else:
