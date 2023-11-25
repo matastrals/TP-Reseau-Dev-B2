@@ -29,9 +29,9 @@ pattern = re.compile(r'^(-?\d{1,4})\s*([-+*])\s*(-?\d{1,4})$')
 while True:
     message = input("Ecrit ton calcul : ")
     if type(message) != str:
-        logging.info("Ce n'est pas une string")
+        print("Ce n'est pas une string")
     elif not bool(pattern.match(message)):
-        logging.info("Ton calcul n'est pas bon !")
+        print("Ton calcul n'est pas bon !")
     else:
         while True:
             try:
