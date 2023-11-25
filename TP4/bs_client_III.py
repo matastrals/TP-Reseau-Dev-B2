@@ -46,6 +46,3 @@ while True:
         s.close()
         sys.exit(1)
 
-print(data.decode())
-s.close()
-sys.exit(0)
