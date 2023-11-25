@@ -33,17 +33,16 @@ while True:
     elif not bool(pattern.match(message)):
         logging.info("Ton calcul n'est pas bon !")
     else:
-        if message == "stop":
-            s.close()
-            sys.exit(0)
-    while True:
-        try:
-            logging.info(f"Message envoyée au serveur {host} : {message}")
-            s.sendall(message.encode())
-            data = s.recv(1024)
-            logging.info(f"Réponse reçue du serveur {host} : {data.decode()}")
-        except Exception as e:
-            print(e)
-            s.close()
-            sys.exit(1)
+        break
+try:
+    logging.info(f"Message envoyée au serveur {host} : {message}")
+    s.sendall(message.encode())
+    data = s.recv(1024)
+    logging.info(f"Réponse reçue du serveur {host} : {data.decode()}")
+except Exception as e:
+    print(e)
+    s.close()
+    sys.exit(1)
 
+s.close()
+sys.exit(1)
