@@ -30,7 +30,7 @@ while True:
     message = input("Que veux-tu envoyer au serveur : ")
     if type(message) != str:
         raise TypeError("Ici on veut que des strings !")
-    elif not bool(message.search(r'^(-?\d{1,4})\s*([-+*])\s*(-?\d{1,4})$')):
+    elif not bool(message.match(r'^(-?\d{1,4})\s*([-+*])\s*(-?\d{1,4})$')):
         raise TypeError("Ton calcule n'est pas bon !")
     else:
         if message == "stop":
