@@ -39,7 +39,7 @@ while True:
                 s.sendall(message.encode())
                 data = s.recv(1024)
                 logging.info(f"Réponse reçue du serveur {host} : {data.decode()}")
-                print(data.decode())
+                print("Le résultat de ton calcul est : ", data.decode())
                 break
             except Exception as e:
                 print(e)
