@@ -64,6 +64,7 @@ while True:
         logging.info(f'Le client {addr[0]} a envoyé {data.decode()}')
         conn.sendall(eval(data.decode))
         logging.info(f'Réponse envoyée au client {addr[0]} : {data.decode}')
+        break
     else:
         # Ferme le serveur si le client n'envoie pas de données pendant 60 seconds
         period = datetime.datetime.now()
