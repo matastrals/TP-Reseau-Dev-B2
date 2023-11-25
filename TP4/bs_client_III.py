@@ -27,11 +27,11 @@ print("Vous pouvez utilitsez les symbols \"+, -, *\"")
 print("Les chiffres ne peuvent excéder 10 000 (valeur négative et positive)\n")
 pattern = re.compile(r'^(-?\d{1,4})\s*([-+*])\s*(-?\d{1,4})$')
 while True:
-    message = input("Que veux-tu envoyer au serveur : ")
+    message = input("Ecrit ton calcul : ")
     if type(message) != str:
-        raise TypeError("Ici on veut que des strings !")
+        logging.info("Ce n'est pas une string")
     elif not bool(pattern.match(message)):
-        raise TypeError("Ton calcule n'est pas bon !")
+        logging.info("Ton calcul n'est pas bon !")
     else:
         if message == "stop":
             s.close()
