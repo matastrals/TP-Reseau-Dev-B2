@@ -25,12 +25,12 @@ print("Bienvenue dans la calculatrice en réseau !")
 print("Vous pouvez envoyer un calcul simple dans le format suivant \"1+1\".")
 print("Vous pouvez utilitsez les symbols \"+, -, *\"")
 print("Les chiffres ne peuvent excéder 10 000 (valeur négative et positive)\n")
-
+pattern = re.compile(r'^(-?\d{1,4})\s*([-+*])\s*(-?\d{1,4})$')
 while True:
     message = input("Que veux-tu envoyer au serveur : ")
     if type(message) != str:
         raise TypeError("Ici on veut que des strings !")
-    elif not bool(message.match(r'^(-?\d{1,4})\s*([-+*])\s*(-?\d{1,4})$')):
+    elif not bool(pattern.match(message)):
         raise TypeError("Ton calcule n'est pas bon !")
     else:
         if message == "stop":
